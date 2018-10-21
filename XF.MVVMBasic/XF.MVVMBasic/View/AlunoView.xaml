@@ -4,10 +4,34 @@
              x:Class="XF.MVVMBasic.View.AlunoView">
     <ContentPage.Content>
         <StackLayout Padding="20">
-            <Label Text="Aluno" Font="20" />
-            <Label Text="{Binding Nome}" />
-            <Label Text="{Binding RM}" />
-            <Label Text="{Binding Email}" />
+            <Label Text="Lista de Alunos" Font="20" />
+            <ListView ItemsSource="{Binding lstAlunos}" SelectedItem="{Binding AlunoSelecionado, Mode=TwoWay}"  CachingStrategy="RecycleElement">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid Padding="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="35"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="230"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Label Text="{Binding Nome}" Grid.Column="0" Grid.Row="0" />
+                                <Button Command="{Binding ExcluirAlunoCommand }" CommandParameter="{Binding AlunoSelecionado}"  HeightRequest="35" Image="lixeira.png" Grid.Column="1"  ></Button>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Button Command="{Binding NovoAlunoCommand }" Text="Novo" Grid.Column="0" ></Button>
+                
+            </Grid>
+                     
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

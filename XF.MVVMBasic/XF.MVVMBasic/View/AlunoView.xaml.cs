@@ -18,11 +18,10 @@ namespace XF.MVVMBasic.View
         AlunoViewModel vmAluno;
 		public AlunoView ()
 		{
-            var aluno = AlunoViewModel.GetAluno();
+            vmAluno = new AlunoViewModel(this);
+            vmAluno.GetAlunos();
 
-            vmAluno = new AlunoViewModel(aluno);
             BindingContext = vmAluno;
-            
             InitializeComponent();
             
 
